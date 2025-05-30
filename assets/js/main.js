@@ -159,91 +159,105 @@
     })
   }
 
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+ /**
+ * Portfolio isotope and filter
+ */
+window.addEventListener('load', () => {
+  let portfolioContainer = select('.portfolio-container');
+  if (portfolioContainer) {
+    let portfolioIsotope = new Isotope(portfolioContainer, {
+      itemSelector: '.portfolio-item'
+    });
+
+    let portfolioFilters = select('#portfolio-flters li', true);
+
+    on('click', '#portfolio-flters li', function(e) {
+      e.preventDefault();
+      portfolioFilters.forEach(function(el) {
+        el.classList.remove('filter-active');
       });
+      this.classList.add('filter-active');
 
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
+      let filterValue = this.getAttribute('data-filter');
+      if (filterValue === '*') {
+        // For "All" filter, select the first item of each category
+        let categories = ['filter-designs', 'filter-websites', 'filter-card', 'filter-logo', 'filter-paints'];
+        let firstItems = [];
+        categories.forEach(category => {
+          let firstItem = portfolioContainer.querySelector(`.${category}`);
+          if (firstItem) {
+            firstItems.push(firstItem);
+          }
         });
-        this.classList.add('filter-active');
-
         portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
+          filter: function(element) {
+            return firstItems.includes(element);
+          }
         });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
+      } else {
+        // For category filters, show all items in that category
+        portfolioIsotope.arrange({
+          filter: filterValue
         });
-      }, true);
-    }
-
-  });
-
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-	/*document.getElementById('portfolio-list')
-	 .style.display = "block";
-	document.getElementById('designs')
-	.style.display = "none";  */
-	/**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
       }
+      portfolioIsotope.on('arrangeComplete', function() {
+        AOS.refresh();
+      });
+    }, true);
+  }
+});
+
+/**
+ * Initiate portfolio lightbox 
+ */
+const portfolioLightbox = GLightbox({
+  selector: '.portfolio-lightbox'
+});
+
+/**
+ * Portfolio details slider
+ */
+new Swiper('.portfolio-details-slider', {
+  speed: 400,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  }
+});
+
+/**
+ * Testimonials slider
+ */
+new Swiper('.testimonials-slider', {
+  speed: 600,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  slidesPerView: 'auto',
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+    1200: {
+      slidesPerView: 3,
+      spaceBetween: 20
     }
-  });
+  }
+});
 
   /**
    * Animation on scroll
