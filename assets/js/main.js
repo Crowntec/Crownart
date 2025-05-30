@@ -258,6 +258,43 @@ new Swiper('.testimonials-slider', {
     }
   }
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.php-email-form');
+  const loading = form.querySelector('.loading');
+  const errorMessage = form.querySelector('.error-message');
+  const sentMessage = form.querySelector('.sent-message');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading
+    loading.style.display = 'block';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      loading.style.display = 'none';
+
+      if (response.ok) {
+        sentMessage.style.display = 'block';
+        form.reset();
+      } else {
+        errorMessage.textContent = 'Oops! Something went wrong. Please try again.';
+        errorMessage.style.display = 'block';
+      }
+    } catch (error) {
+      loading.style.display = 'none';
+      errorMessage.textContent = 'Error: Could not connect to the server.';
+      errorMessage.style.display = 'block';
+    }
+  });
+});
 
   /**
    * Animation on scroll
