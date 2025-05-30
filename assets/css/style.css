@@ -6,7 +6,6 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #272829;
-}
 
 a {
   color: #149ddd;
@@ -235,8 +234,9 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../web/1694551637131.png");
+  background: url("../web/1694551637131.webp");
   background-size: cover;
+  background-position: right;
 }
 
 #hero:before {
@@ -281,9 +281,10 @@ h6 {
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
-	background: url("../web/WEB2.PNG");
-	  background-size: auto;
-	  background-position: right;
+    background: url("../web/WEB2.webp");
+    background-size: cover; /* Fill the screen */
+    background-position: right; /* Center the image */
+    background-repeat: no-repeat;
   }
 }
 
