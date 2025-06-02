@@ -301,10 +301,110 @@ h6 {
     margin-bottom: 30px;
   }
 	#hero {
-		background-position: right
-	}
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: url("../web/profile.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
+/* Blurred and colored overlay */
+#hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Cool blue overlay with opacity */
+  background: rgba(1, 35, 51, 0.45);
+  /* Blur effect */
+  backdrop-filter: blur(0px);
+  /* For Safari support */
+  -webkit-backdrop-filter: blur(0px);
+}
+
+/* Ensure hero content stays above overlay */
+#hero .hero-container {
+  position: relative;
+  z-index: 2;
+}
+}
+/* Animated scroll down arrow - bottom right */
+/* Default: bottom right */
+.scroll-down-arrow {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  color: #fff;
+  font-size: 48px;
+  animation: bounce 2s infinite;
+  transition: color 0.3s;
+  z-index: 10;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center bottom for large screens */
+@media (min-width: 1024px) {
+  .scroll-down-arrow {
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    bottom: 40px;
+    position: absolute;
+    justify-content: center;
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(15px);}
+  60% {transform: translateY(8px);}
+}
+#hero {
+  position: relative; 
+  /* Ensure positioning context for the arrow */
+}
+/* Hero profile image */
+.hero-profile-img {
+  animation: fadeInDown 1.2s;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+/* Hero social icons */
+.hero-social a {
+  color: #fff;
+  font-size: 2rem;
+  transition: color 0.3s, transform 0.3s;
+  display: inline-block;
+}
+.hero-social a:hover {
+  color: #149ddd;
+  transform: translateY(-6px) scale(1.1);
+}
+/* Optional: subtle overlay for better text contrast */
+#hero::before {
+  content: "";
+  background: rgba(5, 10, 24, 0.45);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+#hero .hero-container {
+  position: relative;
+  z-index: 2;
+}
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -696,6 +796,39 @@ section {
   padding: 0;
 }
 
+/* Animated See More button for portfolio */
+.see-more-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #149ddd;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(20, 157, 221, 0.15);
+  transition: background 0.3s, transform 0.3s;
+  position: relative;
+  animation: pulse 1.5s infinite;
+}
+.see-more-btn i {
+  vertical-align: middle;
+  font-size: 1.3em;
+  transition: transform 0.3s;
+}
+.see-more-btn:hover {
+  background: #37b3ed;
+  transform: translateY(-3px) scale(1.04);
+  text-decoration: none;
+}
+.see-more-btn:hover i {
+  transform: translateX(6px) scale(1.1);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(20,157,221,0.2);}
+  70% { box-shadow: 0 0 0 12px rgba(20,157,221,0);}
+  100% { box-shadow: 0 0 0 0 rgba(20,157,221,0.2);}
+}
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
@@ -1064,7 +1197,17 @@ section {
     transform: rotate(360deg);
   }
 }
-
+/* Hero social icons */
+.form-social a {
+  color: #149ddd;
+  font-size: 2rem;
+  transition: color 0.3s, transform 0.3s;
+  display: inline-block;
+}
+.form-social a:hover {
+  color: #03080a;
+  transform: translateY(-6px) scale(1.1);
+}
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/

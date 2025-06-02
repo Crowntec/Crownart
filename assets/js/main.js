@@ -258,6 +258,8 @@ new Swiper('.testimonials-slider', {
     }
   }
 });
+
+// new form updatw
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.php-email-form');
   const loading = form.querySelector('.loading');
