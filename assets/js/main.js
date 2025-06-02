@@ -181,7 +181,7 @@ window.addEventListener('load', () => {
       let filterValue = this.getAttribute('data-filter');
       if (filterValue === '*') {
         // For "All" filter, select the first item of each category
-        let categories = ['filter-designs', 'filter-websites', 'filter-card', 'filter-logo', 'filter-paints'];
+        let categories = ['filter-branding', 'filter-websites', 'filter-product', 'filter-logo', 'filter-paints'];
         let firstItems = [];
         categories.forEach(category => {
           let firstItem = portfolioContainer.querySelector(`.${category}`);
