@@ -1,0 +1,88 @@
+.portfolio-categories {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0 2rem 0;
+  justify-content: center;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.portfolio-categories button {
+  background: #f1f1f1;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  color: #149ddd;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+.portfolio-categories button.active, .portfolio-categories button:hover {
+  background: #149ddd;
+  color: #fff;
+}
+.portfolio-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(20,157,221,0.07);
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.portfolio-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(20,157,221,0.13);
+}
+.portfolio-card .swiper {
+  width: 100%;
+  height: 220px;
+  background: #eee;
+}
+.portfolio-card .swiper-slide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+@media (max-width: 991px) {
+  .portfolio-card .swiper, .portfolio-card .swiper-slide img { height: 180px;}
+}
+@media (max-width: 767px) {
+  .portfolio-card .swiper, .portfolio-card .swiper-slide img { height: 140px;}
+}
+.custom-arrow {
+  color: #149ddd;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  box-shadow: 0 2px 8px rgba(20,157,221,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  animation: bounceArrow 1.2s infinite alternate;
+  font-size: 1.5rem;
+}
+@keyframes bounceArrow {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(-8px);}
+}
+.custom-arrow:hover {
+  background: #149ddd;
+  color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(20,157,221,0.18);
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 1.3rem;
+}
+.view-details-btn {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.view-details-btn:hover {
+  background: #149ddd;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(20,157,221,0.18);
+}

@@ -318,9 +318,9 @@ h6 {
   inset: 0;
   z-index: 1;
   /* Cool blue overlay with opacity */
-  background: rgba(1, 35, 51, 0.45);
+  background: rgba(6, 87, 238, 0.45);
   /* Blur effect */
-  backdrop-filter: blur(0px);
+  backdrop-filter: blur(5px);
   /* For Safari support */
   -webkit-backdrop-filter: blur(0px);
 }
@@ -801,7 +801,7 @@ section {
   display: inline-block;
   padding: 12px 32px;
   background: #149ddd;
-  color: #fff;
+  color: #ffffff;
   border-radius: 30px;
   font-weight: 600;
   font-size: 1.1rem;
@@ -817,7 +817,7 @@ section {
   transition: transform 0.3s;
 }
 .see-more-btn:hover {
-  background: #37b3ed;
+  background: #031f2c;
   transform: translateY(-3px) scale(1.04);
   text-decoration: none;
 }
@@ -1287,4 +1287,62 @@ section {
     width: auto;
     padding-right: 20px 15px;
   }
+}
+/* Theme Switcher Styles */
+#theme-switcher .theme-btn {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.2s;
+}
+#theme-switcher .theme-btn.active {
+  border: 2px solid #000;
+}
+
+/* Light/Dark mode base */
+body.light-mode {
+  background: #f5f8fd;
+  color: #222;
+}
+body.dark-mode {
+  background: #181c24;
+  color: #f5f8fd;
+}
+body.dark-mode .section-bg {
+  background: #232a36 !important;
+}
+body.dark-mode .portfolio .portfolio-wrap,
+body.dark-mode .services .icon-box,
+body.dark-mode .contact .info,
+body.dark-mode .php-email-form
+body.dark-mode #hea {
+  background: #232a36 !important;
+  color: #fff;
+}
+body.dark-mode .section-title h2 {
+  color: #fff;
+}
+body.dark-mode .see-more-btn {
+  background: #222 !important;
+  color: #fff !important;
+}
+
+/* Theme Colors (applied to --theme-color variable) */
+:root {
+  --theme-color: #149ddd;
+}
+body.theme-blue { --theme-color: #149ddd; }
+body.theme-green { --theme-color: #28a745; }
+body.theme-red { --theme-color: #dc3545; }
+body.theme-purple { --theme-color: #6f42c1; }
+body.theme-orange { --theme-color: #fd7e14; }
+body.theme-teal { --theme-color: #20c997; }
+
+/* Use theme color in key places */
+ a:hover
+{
+  color: var(--theme-color) !important;
 }
