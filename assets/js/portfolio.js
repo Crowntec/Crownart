@@ -62,4 +62,89 @@ document.addEventListener('DOMContentLoaded', function() {
       sentMessage.style.display = 'none';
     });
   }
+
+  // Project data for modal (add all your projects here)
+  const projectData = {
+    "branding-zeta": {
+      slides: [
+        "assets/web/branding/b0.jpg",
+        "assets/web/branding/b1.webp",
+        "assets/web/branding/b2.webp",
+        "assets/web/branding/b3.webp",
+        "assets/web/branding/b4.webp",
+        "assets/web/branding/b5.webp"
+      ],
+      details: `
+        <h4>Brand Identity for Zeta</h4>
+        <p><strong>Client:</strong> Zeta Corp</p>
+        <p><strong>Category:</strong> Branding</p>
+        <p>Developed a complete visual identity, including logo, colors, and corporate collateral.</p>
+      `
+    },
+    // Add more projects here, e.g.:
+    // "product-urban": { slides: [...], details: `...` }
+  };
+
+  // Modal logic
+  const modal = document.getElementById('portfolio-modal');
+  const modalContent = modal.querySelector('.portfolio-modal-content');
+  const modalSliderContainer = modal.querySelector('.portfolio-modal-slider-container');
+  const modalDetails = modal.querySelector('.portfolio-modal-details');
+  let modalSwiper = null;
+
+  document.querySelectorAll('.dive-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const projectKey = btn.getAttribute('data-project');
+      const data = projectData[projectKey];
+      if (!data) return;
+
+      // Build Swiper HTML
+      let slidesHtml = data.slides.map(src =>
+        `<div class="swiper-slide"><img src="${src}" alt=""></div>`
+      ).join('');
+      modalSliderContainer.innerHTML = `
+        <div class="swiper portfolio-modal-swiper">
+          <div class="swiper-wrapper">${slidesHtml}</div>
+          <div class="swiper-button-prev custom-arrow"></div>
+          <div class="swiper-button-next custom-arrow"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      `;
+      modalDetails.innerHTML = data.details;
+
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Init Swiper
+      setTimeout(() => {
+        if (modalSwiper) modalSwiper.destroy();
+        modalSwiper = new Swiper('.portfolio-modal-swiper', {
+          loop: true,
+          speed: 600,
+          navigation: {
+            nextEl: '.portfolio-modal-swiper .swiper-button-next',
+            prevEl: '.portfolio-modal-swiper .swiper-button-prev'
+          },
+          pagination: { el: '.portfolio-modal-swiper .swiper-pagination', clickable: true },
+          autoplay: false,
+          effect: 'fade'
+        });
+      }, 50);
+    });
+  });
+
+  // Close modal
+  modal.querySelector('.portfolio-modal-close').onclick = function() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    modalSliderContainer.innerHTML = '';
+    modalDetails.innerHTML = '';
+    if (modalSwiper) { modalSwiper.destroy(); modalSwiper = null; }
+  };
+  // Close on overlay click
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.querySelector('.portfolio-modal-close').onclick();
+  };
 });
