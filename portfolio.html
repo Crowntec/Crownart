@@ -1,313 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Portfolio | Matthias Ayoola</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <!-- Main CSS -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <title>My Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Animation Styles */
+    .project-card {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card.hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      display: none;
+    }
+    .filter-btn {
+      transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+    .filter-btn:hover {
+      transform: scale(1.05);
+    }
+    .slider-overlay {
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .slider-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .slider-image {
+      max-height: 50vh;
+      object-fit: contain;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    .slider-image.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .thumbnail {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .thumbnail:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+    .thumbnail.active {
+      border: 2px solid #3b82f6;
+      opacity: 1;
+    }
+    .details-animation {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .header-animation {
+      animation: slideDown 0.5s ease forwards;
+    }
+    .filter-bar-animation {
+      animation: fadeIn 0.7s ease forwards 0.2s;
+      opacity: 0;
+    }
+    @media (max-width: 640px) {
+      .slider-image {
+        max-height: 40vh;
+      }
+      .project-card {
+        transform: translateY(10px); /* Reduced animation distance for mobile */
+      }
+      .project-card.visible {
+        transform: translateY(0);
+      }
+      .project-card.hidden {
+        transform: translateY(10px);
+      }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Staggered animation for project cards */
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+    .project-card:nth-child(4) { animation-delay: 0.4s; }
+    .project-card:nth-child(5) { animation-delay: 0.5s; }
+    .project-card:nth-child(6) { animation-delay: 0.6s; }
+  </style>
 </head>
-<body>
-  <!-- ======= Header ======= -->
-  <header id="header">
-      <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-    <div class="d-flex flex-column">
-      <div class="profile">
-        <img src="assets/web/profile.webp" alt="Matthias Ayoola" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Matthias Ayoola</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://wa.me/2348077643940" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-          <a href="https://x.com/C_rowntech?t=K1lyToPX4hGiQ3Go60ShPg&s=09" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.facebook.com/ayoola.matthias" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="https://www.instagram.com/crownart.gfx?igsh=cDUyMmh1eW9mb3Uy" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="mailto:princematthias64@gmail.com" class="google-plus"><i class="bx bxl-gmail"></i></a>
-          <a href="https://www.linkedin.com/in/ayoola-matthias-157736240" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
-      </div>
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="portfolio.html" class="nav-link active"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav>
-    </div>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-10 header-animation">
+    <nav class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
+      <h1 class="text-xl sm:text-2xl font-bold">My Portfolio</h1>
+      <ul class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-2 sm:mt-0">
+        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Home</a></li>
+        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">About</a></li>
+        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Contact</a></li>
+      </ul>
+    </nav>
   </header>
-  <main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Portfolio</li>
-          </ol>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <!-- Filter Bar -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 filter-bar-animation">
+      <button class="filter-btn px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded" data-filter="all">All</button>
+      <button class="filter-btn px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-gray-200 text-gray-800 rounded dark:bg-gray-700 dark:text-gray-100" data-filter="web">Web</button>
+      <button class="filter-btn px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-gray-200 text-gray-800 rounded dark:bg-gray-700 dark:text-gray-100" data-filter="design">Design</button>
+      <button class="filter-btn px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-gray-200 text-gray-800 rounded dark:bg-gray-700 dark:text-gray-100" data-filter="mobile">Mobile</button>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="project-grid">
+      <!-- Sample Projects -->
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="web">
+        <img src="https://via.placeholder.com/400x300?text=Project+1" alt="Project 1 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">E-Commerce Platform</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">A fully responsive online store with secure payment integration.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> React, Node.js, Stripe</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Jan 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+1", "https://via.placeholder.com/800x600?text=Image+2"]' data-details='{"title":"E-Commerce Platform","description":"A fully responsive online store with secure payment integration and user authentication.","technologies":"React, Node.js, Stripe","date":"Jan 2024"}'>See Project</button>
         </div>
       </div>
-    </section>
-    <!-- ======= Portfolio Filters ======= -->
-    <section class="portfolio section-bg">
-      <div class="container">
-        <div class="section-title">
-          <h2>My Projects</h2>
-          <p>Browse my complete works — filter by category or view all below.</p>
-        </div>
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-branding">Branding</li>
-              <li data-filter=".filter-product">Product Designs</li>
-              <li data-filter=".filter-websites">Websites</li>
-              <li data-filter=".filter-logo">Logos</li>
-              <li data-filter=".filter-designs">Designs</li>
-            </ul>
-          </div>
-        </div>
-        <!-- ======= Portfolio Grid (All Projects) ======= -->
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-          <!-- Branding Project Example -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
-            <div class="portfolio-wrap">
-              <!-- Swiper Slider with animated arrows -->
-              <div class="swiper portfolio-details-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="assets/web/branding/b0.jpg" class="img-fluid" alt="Branding Slide 1">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="assets/web/branding/b1.webp" class="img-fluid" alt="Branding Slide 2">
-                    <img src="assets/web/branding/b2.webp" class="img-fluid" alt="Branding Slide 2">
-                    <img src="assets/web/branding/b3.webp" class="img-fluid" alt="Branding Slide 2">
-                    <img src="assets/web/branding/b4.webp" class="img-fluid" alt="Branding Slide 2">
-                    <img src="assets/web/branding/b5.webp" class="img-fluid" alt="Branding Slide 2">
-                  </div>
-                </div>
-                <!-- Custom navigation arrows -->
-                <div class="swiper-button-prev custom-arrow"></div>
-                <div class="swiper-button-next custom-arrow"></div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <!-- Project Details -->
-              <div class="portfolio-info p-3">
-                <h4>Brand Identity for Zeta</h4>
-                <p><strong>Client:</strong> Zeta Corp</p>
-                <p><strong>Category:</strong> Branding</p>
-                <p>Developed a complete visual identity, including logo, colors, and corporate collateral.</p>
-                <a href="#" class="btn btn-outline-primary mt-2 view-details-btn dive-btn" data-project="branding-zeta">
-                  <i class="bi bi-eye"></i> Dive into the Project
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Product Example -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-product">
-            <div class="portfolio-wrap">
-              <div class="swiper portfolio-details-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="assets/web/product/p0.jpg" class="img-fluid" alt="Product Slide 1"></div>
-                  <div class="swiper-slide"><img src="assets/web/product/p1.jpg" class="img-fluid" alt="Product Slide 2"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <div class="portfolio-info p-3">
-                <h4>Product Package Design</h4>
-                <p><strong>Client:</strong> Urban Tastes</p>
-                <p><strong>Category:</strong> Product Design</p>
-                <p>Eye-catching packaging and product graphics for a new snack line.</p>
-                <a href="#" class="btn btn-outline-primary mt-2 view-details-btn dive-btn" data-project="product-urban-tastes">
-                  <i class="bi bi-eye"></i> Dive into the Project
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Websites Example -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-websites">
-            <div class="portfolio-wrap">
-              <div class="swiper portfolio-details-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="assets/web/website/wo.jpg" class="img-fluid" alt="Website Slide 1"></div>
-                  <div class="swiper-slide"><img src="assets/web/website/wo2.jpg" class="img-fluid" alt="Website Slide 2"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <div class="portfolio-info p-3">
-                <h4>Innovate Solutions Website</h4>
-                <p><strong>Client:</strong> Alex Thornton</p>
-                <p><strong>Category:</strong> Websites</p>
-                <p>Responsive redesign with custom UI elements and engaging copy.</p>
-                <a href="#" class="btn btn-outline-primary mt-2 view-details-btn dive-btn" data-project="website-innovate-solutions">
-                  <i class="bi bi-eye"></i> Dive into the Project
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Logos Example -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-logo">
-            <div class="portfolio-wrap">
-              <div class="swiper portfolio-details-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="assets/web/logo/l0.jpg" class="img-fluid" alt="Logo Slide 1"></div>
-                  <div class="swiper-slide"><img src="assets/web/logo/l1.jpg" class="img-fluid" alt="Logo Slide 2"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <div class="portfolio-info p-3">
-                <h4>Visionary Designs Logo</h4>
-                <p><strong>Client:</strong> Emma Riley</p>
-                <p><strong>Category:</strong> Logos</p>
-                <p>Minimal, scalable logo for a creative agency.</p>
-                <a href="#" class="btn btn-outline-primary mt-2 view-details-btn dive-btn" data-project="logo-visionary-designs">
-                  <i class="bi bi-eye"></i> Dive into the Project
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Designs Example -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-designs">
-            <div class="portfolio-wrap">
-              <div class="swiper portfolio-details-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="assets/web/designs/d0.webp" class="img-fluid" alt="Design 1"></div>
-                  <div class="swiper-slide"><img src="assets/web/designs/d1.webp" class="img-fluid" alt="Design 2"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <div class="portfolio-info p-3">
-                <h4>Poster Series</h4>
-                <p><strong>Client:</strong> Self-Initiated</p>
-                <p><strong>Category:</strong> Designs</p>
-                <p>Vibrant posters for awareness campaigns and events.</p>
-                <a href="#" class="btn btn-outline-primary mt-2 view-details-btn dive-btn" data-project="poster-series">
-                  <i class="bi bi-eye"></i> Dive into the Project
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Add more projects below using correct `filter-` class -->
-        </div>
-        <div class="text-center mt-4">
-          <a href="#contact" class="see-more-btn">
-            Start Your Project <i class="bi bi-arrow-right-circle ms-2"></i>
-          </a>
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="design">
+        <img src="https://via.placeholder.com/400x300?text=Project+2" alt="Project 2 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">Brand Identity Design</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">Created a cohesive brand identity for a startup, including logo and assets.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> Adobe Illustrator, Figma</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Mar 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+3", "https://via.placeholder.com/800x600?text=Image+4"]' data-details='{"title":"Brand Identity Design","description":"Created a cohesive brand identity for a startup, including logo, color palette, and marketing assets.","technologies":"Adobe Illustrator, Figma","date":"Mar 2024"}'>See Project</button>
         </div>
       </div>
-    </section>
-    <!-- ======= Contact Section (exactly as index.html) ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>
-            Ready to start your next project or have questions? I’m here to help! Reach out for collaborations, design inquiries, or just to say hello. I respond promptly and look forward to working with you to bring your ideas to life.
-          </p>   
-        </div>
-        <div class="row" data-aos="fade-in">
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Bello Villa Isale-genral, Ogbomosho, Oyo State, NG</p>
-              </div>
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>princematthias64@gmail.com</p>
-              </div>
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+234 807 7643 940</p>
-              </div>
-              <iframe src="https://www.google.com/maps/d/embed?mid=14SeAbaOzehQyG8whSd2vSGQjoM2W7ow&ehbc=2E312F" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="https://formspree.io/f/manjwobq" method="POST" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="email">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <input type="hidden" name="_subject" value="New Contact Form Submission">
-              <input type="hidden" name="_honeypot" value="">
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-              <div class="contact-social text-center my-4">
-                <div class="form-social mb-4">
-                  <a href="https://wa.me/2348077643940" target="_blank" class="mx-2"><i class="bx bxl-whatsapp"></i></a>
-                  <a href="https://x.com/C_rowntech?t=K1lyToPX4hGiQ3Go60ShPg&s=09" target="_blank" class="mx-2"><i class="bx bxl-twitter"></i></a>
-                  <a href="https://www.facebook.com/ayoola.matthias" target="_blank" class="mx-2"><i class="bx bxl-facebook"></i></a>
-                  <a href="https://www.instagram.com/crownart.gfx?igsh=cDUyMmh1eW9mb3Uy" target="_blank" class="mx-2"><i class="bx bxl-instagram"></i></a>
-                  <a href="mailto:princematthias64@gmail.com" target="_blank" class="mx-2"><i class="bx bxl-gmail"></i></a>
-                  <a href="https://www.linkedin.com/in/ayoola-matthias-157736240" target="_blank" class="mx-2"><i class="bx bxl-linkedin"></i></a>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="mobile">
+        <img src="https://via.placeholder.com/400x300?text=Project+3" alt="Project 3 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">Fitness App</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">A mobile app for tracking workouts and nutrition plans.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> Flutter, Firebase</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Jun 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+5", "https://via.placeholder.com/800x600?text=Image+6"]' data-details='{"title":"Fitness App","description":"A mobile app for tracking workouts and nutrition plans with real-time analytics.","technologies":"Flutter, Firebase","date":"Jun 2024"}'>See Project</button>
         </div>
       </div>
-    </section>
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="web">
+        <img src="https://via.placeholder.com/400x300?text=Project+4" alt="Project 4 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">Portfolio Website</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">A personal portfolio to showcase projects with a modern design.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> HTML, Tailwind CSS, JavaScript</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Aug 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+7", "https://via.placeholder.com/800x600?text=Image+8"]' data-details='{"title":"Portfolio Website","description":"A personal portfolio to showcase projects with a modern design and smooth animations.","technologies":"HTML, Tailwind CSS, JavaScript","date":"Aug 2024"}'>See Project</button>
+        </div>
+      </div>
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="design">
+        <img src="https://via.placeholder.com/400x300?text=Project+5" alt="Project 5 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">App UI Design</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">Designed user interfaces for a productivity app with a focus on UX.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> Figma, Adobe XD</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Oct 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+9", "https://via.placeholder.com/800x600?text=Image+10"]' data-details='{"title":"App UI Design","description":"Designed user interfaces for a productivity app with a focus on user experience and accessibility.","technologies":"Figma, Adobe XD","date":"Oct 2024"}'>See Project</button>
+        </div>
+      </div>
+      <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-md" data-category="mobile">
+        <img src="https://via.placeholder.com/400x300?text=Project+6" alt="Project 6 Cover" class="w-full h-40 sm:h-48 object-cover rounded-t-lg">
+        <div class="p-4">
+          <h3 class="text-base sm:text-lg font-semibold">Travel App</h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">A mobile app for booking travel itineraries and exploring destinations.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1"><strong>Technologies:</strong> React Native, GraphQL</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400"><strong>Date:</strong> Dec 2024</p>
+          <button class="see-project mt-2 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300" data-images='["https://via.placeholder.com/800x600?text=Image+11", "https://via.placeholder.com/800x600?text=Image+12"]' data-details='{"title":"Travel App","description":"A mobile app for booking travel itineraries and exploring destinations with real-time updates.","technologies":"React Native, GraphQL","date":"Dec 2024"}'>See Project</button>
+        </div>
+      </div>
+    </div>
   </main>
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; CROWN <strong><span>ART</span></strong>
+
+  <!-- Slider Overlay -->
+  <div id="slider-overlay" class="slider-overlay fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-20">
+    <div class="flex flex-col w-full max-w-6xl mx-4 sm:mx-auto space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4">
+      <!-- Image and Thumbnails -->
+      <div class="flex-1 flex flex-col items-center">
+        <button id="close-slider" class="absolute top-4 right-4 text-white text-2xl sm:text-3xl hover:text-gray-300 transition-colors duration-300" aria-label="Close slider">×</button>
+        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-xl sm:text-2xl hover:text-gray-300 transition-colors duration-300" aria-label="Previous slide">←</button>
+        <img id="slider-image" class="slider-image w-full" src="" alt="Project Image">
+        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-xl sm:text-2xl hover:text-gray-300 transition-colors duration-300" aria-label="Next slide">→</button>
+        <div id="thumbnails" class="flex flex-wrap justify-center gap-2 mt-4"></div>
       </div>
-      <div class="credits">
-        Designed by <a href="https://wa.me/2348077643940">CrownArt</a>
+      <!-- Project Details -->
+      <div class="w-full lg:w-1/3 p-4 bg-white dark:bg-gray-800 rounded-lg details-animation">
+        <h3 id="slider-title" class="text-lg sm:text-xl font-semibold"></h3>
+        <p id="slider-description" class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2"></p>
+        <p id="slider-technologies" class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2"></p>
+        <p id="slider-date" class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 py-4 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-sm">© 2025 My Portfolio. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-2">
+        <a href="#" class="hover:text-blue-500 transition-colors duration-300 text-sm sm:text-base">GitHub</a>
+        <a href="#" class="hover:text-blue-500 transition-colors duration-300 text-sm sm:text-base">LinkedIn</a>
+        <a href="#" class="hover:text-blue-500 transition-colors duration-300 text-sm sm:text-base">Twitter</a>
       </div>
     </div>
   </footer>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <!-- Vendor JS -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <!-- Main JS (includes Isotope, Swiper, contact form, etc.) -->
-  <script src="assets/js/main.js"></script>
 
-  <!-- Portfolio Modal Overlay -->
-  <div id="portfolio-modal" class="portfolio-modal">
-    <div class="portfolio-modal-content">
-      <span class="portfolio-modal-close">&times;</span>
-      <div class="portfolio-modal-slider-container">
-        <!-- Swiper slider will be injected here -->
-      </div>
-      <div class="portfolio-modal-details mt-3 text-center"></div>
-    </div>
-  </div>
+  <script>
+    // Initialize project cards visibility
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach(card => {
+        card.classList.add('visible');
+      });
+    });
+
+    // Filter Functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterButtons.forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
+        filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-gray-100'));
+        button.classList.remove('bg-gray-200', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-gray-100');
+        button.classList.add('bg-blue-500', 'text-white');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.classList.remove('visible');
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Slider Functionality
+    const sliderOverlay = document.getElementById('slider-overlay');
+    const sliderImage = document.getElementById('slider-image');
+    const sliderTitle = document.getElementById('slider-title');
+    const sliderDescription = document.getElementById('slider-description');
+    const sliderTechnologies = document.getElementById('slider-technologies');
+    const sliderDate = document.getElementById('slider-date');
+    const thumbnailsContainer = document.getElementById('thumbnails');
+    const closeSlider = document.getElementById('close-slider');
+    const prevSlide = document.getElementById('prev-slide');
+    const nextSlide = document.getElementById('next-slide');
+    let currentImages = [];
+    let currentIndex = 0;
+
+    document.querySelectorAll('.see-project').forEach(button => {
+      button.addEventListener('click', () => {
+        currentImages = JSON.parse(button.getAttribute('data-images'));
+        const details = JSON.parse(button.getAttribute('data-details'));
+        currentIndex = 0;
+
+        // Update slider content
+        sliderImage.src = currentImages[currentIndex];
+        sliderImage.classList.remove('active');
+        setTimeout(() => sliderImage.classList.add('active'), 50);
+        sliderTitle.textContent = details.title;
+        sliderDescription.textContent = details.description;
+        sliderTechnologies.innerHTML = `<strong>Technologies:</strong> ${details.technologies}`;
+        sliderDate.innerHTML = `<strong>Date:</strong> ${details.date}`;
+
+        // Populate thumbnails
+        thumbnailsContainer.innerHTML = '';
+        currentImages.forEach((img, index) => {
+          const thumbnail = document.createElement('img');
+          thumbnail.src = img;
+          thumbnail.alt = `Thumbnail ${index + 1}`;
+          thumbnail.classList.add('thumbnail', 'w-12', 'h-12', 'sm:w-16', 'sm:h-16', 'object-cover', 'rounded', 'cursor-pointer');
+          if (index === currentIndex) thumbnail.classList.add('active');
+          thumbnail.addEventListener('click', () => {
+            currentIndex = index;
+            sliderImage.classList.remove('active');
+            sliderImage.src = currentImages[currentIndex];
+            setTimeout(() => sliderImage.classList.add('active'), 50);
+            updateThumbnails();
+          });
+          thumbnailsContainer.appendChild(thumbnail);
+        });
+
+        sliderOverlay.classList.remove('hidden');
+        setTimeout(() => sliderOverlay.classList.add('visible'), 50);
+      });
+    });
+
+    function updateThumbnails() {
+      const thumbnails = thumbnailsContainer.querySelectorAll('.thumbnail');
+      thumbnails.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    closeSlider.addEventListener('click', () => {
+      sliderOverlay.classList.remove('visible');
+      setTimeout(() => sliderOverlay.classList.add('hidden'), 500);
+    });
+
+    prevSlide.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      sliderImage.classList.remove('active');
+      sliderImage.src = currentImages[currentIndex];
+      setTimeout(() => sliderImage.classList.add('active'), 50);
+      updateThumbnails();
+    });
+
+    nextSlide.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      sliderImage.classList.remove('active');
+      sliderImage.src = currentImages[currentIndex];
+      setTimeout(() => sliderImage.classList.add('active'), 50);
+      updateThumbnails();
+    });
+
+    // Keyboard Navigation for Accessibility
+    document.addEventListener('keydown', (e) => {
+      if (sliderOverlay.classList.contains('hidden')) return;
+      if (e.key === 'ArrowLeft') prevSlide.click();
+      if (e.key === 'ArrowRight') nextSlide.click();
+      if (e.key === 'Escape') closeSlider.click();
+    });
+  </script>
 </body>
 </html>
