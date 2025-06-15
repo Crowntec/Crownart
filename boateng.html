@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthias Ayoola - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/glightbox/dist/js/glightbox.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/waypoints/lib/noframework.waypoints.min.js"></script>
+  <script src="https://unpkg.com/purecounterjs"></script>
+  <script src="main.js" defer></script>
+  <style>
+    /* Custom styles for portfolio section */
+    .portfolio-section {
+      padding: 60px 0;
+      background: #f5f8fd;
+      overflow: hidden;
+    }
+    .portfolio-item {
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .portfolio-details {
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+    }
+    .portfolio-details h4 {
+      margin: 10px 0 5px;
+      color: #173b6c;
+      font-size: 1.2rem;
+    }
+    .portfolio-details p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #149ddd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+      font-size: 0.9rem;
+    }
+    .download-btn:hover {
+      background: #37b3ed;
+      transform: translateY(-3px);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      #header {
+        width: 250px;
+      }
+      #main {
+        margin-left: 250px;
+      }
+      .container, .container-fluid {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .portfolio-item {
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      #header {
+        left: -250px;
+      }
+      #main {
+        margin-left: 0;
+      }
+      #hero h1 {
+        font-size: 40px;
+        line-height: 48px;
+      }
+      #hero h2 {
+        font-size: 18px;
+      }
+      .portfolio-item {
+        margin-bottom: 15px;
+      }
+      .col-lg-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #hero {
+        height: auto;
+        padding: 60px 0;
+      }
+      #hero h1 {
+        font-size: 28px;
+        line-height: 36px;
+      }
+      #hero h2 {
+        font-size: 16px;
+      }
+      .btn-get-started {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      .portfolio-details h4 {
+        font-size: 1rem;
+      }
+      .portfolio-details p {
+        font-size: 0.8rem;
+      }
+      .download-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+      .contact .info {
+        padding: 20px;
+      }
+      .contact .php-email-form {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #header .profile img {
+        width: 100px;
+      }
+      #header .profile h1 {
+        font-size: 20px;
+      }
+      #hero .hero-container {
+        padding: 0 15px;
+      }
+      .section-title h2 {
+        font-size: 24px;
+      }
+      .contact .row {
+        flex-direction: column;
+      }
+      .contact .info, .contact .php-email-form {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 10px;
+      }
+      #footer {
+        width: 100%;
+        position: relative;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header" class="fixed-top">
+    <div class="profile">
+      <img src="profile.webp" alt="Profile" class="img-fluid">
+      <h1 class="text-light"><a href="index.html">Matthias Ayoola</a></h1>
+      <div class="social-links mt-3">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#portfolio" class="active"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        <li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+      </ul>
+    </nav>
+    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list"></i></button>
+  </header>
+
+  <!-- Main -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center">
+      <div class="container" data-aos="fade-in">
+        <h1>Matthias Ayoola</h1>
+        <h2>Graphics Designer & Web Developer</h2>
+        <div class="d-flex flex-column flex-md-row gap-2">
+          <a href="#portfolio" class="btn-get-started scrollto">View Portfolio</a>
+          <a href="#contact" class="btn-get-started scrollto">Book a Session</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Showcasing my latest projects with detailed insights.</p>
+        </div>
+        <div class="row portfolio-container" data-aos="zoom-in">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="project1.jpg" alt="Project 1">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 1</h4>
+                <p>A vibrant logo design for a tech startup, created with Adobe Illustrator.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="project2.jpg" alt="Project 2">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 2</h4>
+                <p>Responsive website for an e-commerce store, built with HTML, CSS, and JS.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="project3.jpg" alt="Project 3">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 3</h4>
+                <p>UI/UX design for a mobile app, designed in Figma.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="project4.jpg" alt="Project 4">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 4</h4>
+                <p>Branding kit for a local business, including logos and stationery.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="project5.jpg" alt="Project 5">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 5</h4>
+                <p>Custom WordPress theme for a personal blog.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="project6.jpg" alt="Project 6">
+              <div class="portfolio-details fade-in-up">
+                <h4>Project 6</h4>
+                <p>Motion graphics for a promotional video.</p>
+                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Ready to start your next project or have questions? I’m here to help!</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Bello Villa Isale-genral, Ogbomosho, Oyo State, NG</p>
+              </div>
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>[email protected]</p>
+              </div>
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55s</p>
+              </div>
+              <div class="form-social">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        © CROWN ART
+      </div>
+      <div class="credits">
+        Designed by CrownArt
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script>
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+    document.addEventListener('DOMContentLoaded', () => {
+      const portfolioIsotope = new Isotope('.portfolio-container', {
+        itemSelector: '.ponrtfolio-item',
+        layoutMode: 'masonry'
+      });
+    });
+  </script>
+</body>
+</html>
