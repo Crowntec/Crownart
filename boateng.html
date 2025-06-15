@@ -205,29 +205,39 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header id="header" class="fixed-top">
-    <div class="profile">
-      <img src="profile.webp" alt="Profile" class="img-fluid">
-      <h1 class="text-light"><a href="index.html">Matthias Ayoola</a></h1>
-      <div class="social-links mt-3">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+ 
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets\web\profile.webp" alt="" width="600" height="537" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Matthias Ayoola </a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://wa.me/2348077643940" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+          <a href="https://x.com/C_rowntech?t=K1lyToPX4hGiQ3Go60ShPg&s=09" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/ayoola.matthias" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/crownart.gfx?igsh=cDUyMmh1eW9mb3Uy" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="princematthias64@gmail.com" class="google-plus"><i class="bx bxl-gmail"></i></a>
+          <a href="https://www.linkedin.com/in/ayoola-matthias-157736240" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
       </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
     </div>
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
-        <li><a href="#portfolio" class="active"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-        <li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-      </ul>
-    </nav>
-    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list"></i></button>
-  </header>
+  </header><!-- End Header -->
 
   <!-- Main -->
   <main id="main">
@@ -243,79 +253,7 @@
       </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio-section">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Showcasing my latest projects with detailed insights.</p>
-        </div>
-        <div class="row portfolio-container" data-aos="zoom-in">
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="project1.jpg" alt="Project 1">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 1</h4>
-                <p>A vibrant logo design for a tech startup, created with Adobe Illustrator.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="project2.jpg" alt="Project 2">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 2</h4>
-                <p>Responsive website for an e-commerce store, built with HTML, CSS, and JS.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="project3.jpg" alt="Project 3">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 3</h4>
-                <p>UI/UX design for a mobile app, designed in Figma.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="project4.jpg" alt="Project 4">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 4</h4>
-                <p>Branding kit for a local business, including logos and stationery.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="project5.jpg" alt="Project 5">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 5</h4>
-                <p>Custom WordPress theme for a personal blog.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="project6.jpg" alt="Project 6">
-              <div class="portfolio-details fade-in-up">
-                <h4>Project 6</h4>
-                <p>Motion graphics for a promotional video.</p>
-                <a href="https://drive.google.com/your-file-link" class="download-btn">Download</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
+        <!-- Contact Section -->
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
