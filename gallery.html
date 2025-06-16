@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Matthias Ayoola</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/web/cbg.webp" rel="icon">
+  <link href="assets/web/cbg.webp" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    .gallery-section {
+      padding: 60px 0;
+      background: #f5f8fd;
+      overflow: hidden;
+    }
+    .gallery-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gallery-item {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item-content {
+      padding: 20px;
+    }
+    .gallery-item-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #173b6c;
+    }
+    .gallery-item-content p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .view-project-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #149ddd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .view-project-btn:hover {
+      background: #37b3ed;
+      transform: translateY(-2px);
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #149ddd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .download-btn:hover {
+      background: #37b3ed;
+      transform: translateY(-3px);
+    }
+    .download-btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* Overlay Styles */
+    .project-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: slideIn 0.5s ease forwards;
+    }
+    .project-overlay.active {
+      display: flex;
+    }
+    .overlay-content {
+      background: #fff;
+      border-radius: 10px;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+      position: relative;
+      animation: fadeIn 0.5s ease;
+    }
+    .overlay-content img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeScaleIn 0.5s ease forwards;
+      animation-delay: calc(0.1s * var(--image-index));
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #ff0000;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .close-btn:hover {
+      transform: scale(1.2);
+    }
+    .project-title {
+      font-size: 1.8rem;
+      color: #173b6c;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .overlay-download-btn {
+      display: block;
+      text-align: center;
+      padding: 12px 24px;
+      background: #149ddd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin: 20px auto;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .overlay-download-btn:hover {
+      background: #37b3ed;
+      transform: translateY(-3px);
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeScaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .gallery-item img {
+        height: 200px;
+      }
+      .gallery-item-content h3 {
+        font-size: 1.3rem;
+      }
+      .view-project-btn, .download-btn, .overlay-download-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+      .project-title {
+        font-size: 1.5rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .gallery-container {
+        max-width: 100%;
+        padding: 0 15px;
+      }
+      .gallery-item img {
+        height: 180px;
+      }
+      .section-title {
+        padding: 0 15px;
+      }
+      .overlay-content {
+        padding: 15px;
+      }
+      .project-title {
+        font-size: 1.3rem;
+      }
+      .close-btn {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="assets/web/profile.webp" alt="" width="600" height="537" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Matthias Ayoola</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://wa.me/2348077643940" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+          <a href="https://x.com/C_rowntech?t=K1lyToPX4hGiQ3Go60ShPg&s=09" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/ayoola.matthias" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/crownart.gfx?igsh=cDUyMmh1eW9mb3Uy" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="mailto:princematthias64@gmail.com" class="google-plus"><i class="bx bxl-gmail"></i></a>
+          <a href="https://www.linkedin.com/in/ayoola-matthias-157736240" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Gallery</h2>
+        <p>Explore my latest visual creations.</p>
+      </div>
+      <div class="gallery-container" data-aos="zoom-in" id="gallery-container">
+        <!-- Projects will be dynamically inserted here by JavaScript -->
+      </div>
+      <div class="download-btn-container" data-aos="fade-up">
+        <a href="https://drive.google.com/file/d/1FfPOhsdqxVuj2ThykuBx5NddQmaXKDmq/view?usp=drivesdk" class="download-btn">Download All</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Overlay -->
+  <div class="project-overlay" id="project-overlay">
+    <div class="overlay-content" id="overlay-content">
+      <span class="close-btn" id="close-overlay">❌</span>
+      <h2 class="project-title" id="overlay-title"></h2>
+      <div id="overlay-images"></div>
+      <a href="https://drive.google.com/file/d/1FfPOhsdqxVuj2ThykuBx5NddQmaXKDmq/view?usp=drivesdk" class="overlay-download-btn">Download All</a>
+    </div>
+  </div>
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Ready to start your next project or have questions? I’m here to help! Reach out for collaborations, design inquiries, or just to say hello. I respond promptly and look forward to working with you to bring your ideas to life.</p>
+      </div>
+      <div class="row" data-aos="fade-in">
+        <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Bello Villa Isale-genral, Ogbomosho, Oyo State, NG</p>
+            </div>
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>princematthias64@gmail.com</p>
+            </div>
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+2348077643940</p>
+            </div>
+            <iframe src="https://www.google.com/maps/d/embed?mid=14SeAbaOzehQyG8whSd2vSGQjoM2W7ow&ehbc=2E312F" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+          <form action="https://formspree.io/f/manjwobq" method="POST" role="form" class="php-email-form">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email">Your Email</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" name="message" rows="10" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New Contact Form Submission">
+            <input type="hidden" name="_honeypot" value="">
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="contact-social text-center my-4">
+              <div class="form-social mb-4">
+                <a href="https://wa.me/2348077643940" target="_blank" class="mx-2"><i class="bx bxl-whatsapp"></i></a>
+                <a href="https://x.com/C_rowntech?t=K1lyToPX4hGiQ3Go60ShPg&s=09" target="_blank" class="mx-2"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/ayoola.matthias" target="_blank" class="mx-2"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/crownart.gfx?igsh=cDUyMmh1eW9mb3Uy" target="_blank" class="mx-2"><i class="bx bxl-instagram"></i></a>
+                <a href="mailto:princematthias64@gmail.com" target="_blank" class="mx-2"><i class="bx bxl-gmail"></i></a>
+                <a href="https://www.linkedin.com/in/ayoola-matthias-157736240" target="_blank" class="mx-2"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Contact Section -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        © CROWN <strong><span>ART</span></strong>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://wa.me/2348077643940">CrownArt</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+
+    // Project data
+    const projects = [
+      {
+        title: "Boateng Livings",
+        description: "Full Branding for a property manager Boateng.",
+        images: ["assets/banding1.jpg", "assets/banding2.jpg", "assets/banding3.jpg", "assets/banding4.jpg", "assets/banding5.jpg", "assets/banding6.jpg"],
+      },
+      {
+        title: "Luxe Roots",
+        description: "Product Packaging.",
+        images: ["assets/web/product/p0.jpg", "assets/web/product/p1.webp", "assets/web/product/p1.webp", "assets/web/product/p2.webp", "assets/web/product/p3.webp", "assets/web/product/p4.webp", "assets/web/product/p5.webp"],
+      },
+      {
+        title: "Gocab",
+        description: "Full branding for Gocab.",
+        images: ["assets/web/banding/b0.jpg", "assets/web/banding/b1.webp", "assets/web/banding/b1.webp", "assets/web/banding/b2.webp", "assets/web/banding/b3.webp", "assets/web/banding/b4.webp", "assets/web/banding/b5.webp", "assets/web/banding/b6.webp", "assets/web/banding/b7.webp", "assets/web/banding/b8.webp", "assets/web/banding/b9.webp", "assets/web/banding/b10.webp", "assets/web/banding/b11.webp", "assets/web/banding/b12.webp", "assets/web/banding/b13.webp", "assets/web/banding/b14.webp", "assets/web/banding/b15.webp", "assets/web/banding/b16.webp", "assets/web/banding/b17.webp", "assets/web/banding/b18.webp", "assets/web/banding/b19.webp", "assets/web/banding/b20.webp", "assets/web/banding/b21.webp", "assets/web/banding/b22.webp", "assets/web/banding/b23.webp", "assets/web/banding/b24.webp"],
+      },
+    ];
+
+    // Populate gallery
+    const galleryContainer = document.getElementById('gallery-container');
+    projects.forEach((project, index) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.classList.add('gallery-item');
+      galleryItem.innerHTML = `
+        <img src="${project.images[0]}" alt="${project.title}">
+        <div class="gallery-item-content">
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+          <a href="#" class="view-project-btn" data-project-index="${index}">View Project</a>
+        </div>
+      `;
+      galleryContainer.appendChild(galleryItem);
+    });
+
+    // Overlay functionality
+    const overlay = document.getElementById('project-overlay');
+    const overlayContent = document.getElementById('overlay-content');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayImages = document.getElementById('overlay-images');
+    const closeOverlay = document.getElementById('close-overlay');
+
+    document.querySelectorAll('.view-project-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectIndex = button.getAttribute('data-project-index');
+        const project = projects[projectIndex];
+        
+        overlayTitle.textContent = project.title;
+        overlayImages.innerHTML = project.images.map((img, idx) => `
+          <img src="${img}" alt="${project.title} image" style="--image-index: ${idx};">
+        `).join('');
+        
+        overlay.classList.add('active');
+      });
+    });
+
+    closeOverlay.addEventListener('click', () => {
+      overlay.classList.remove('active');
+    });
+
+    // Close overlay when clicking outside content
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+
+    // Initialize Isotope for portfolio (if used elsewhere)
+    document.addEventListener('DOMContentLoaded', () => {
+      const portfolioIsotope = new Isotope('.portfolio-container', {
+        itemSelector: '.portfolio-item',
+        layoutMode: 'masonry'
+      });
+    });
+  </script>
+</body>
+</html>
