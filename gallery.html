@@ -26,17 +26,38 @@
   <link href="assets/css/style.css" rel="stylesheet">
 
   <style>
+    /* Overlay images grid layout */
+    .overlay-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      .overlay-images {
+        grid-template-columns: 1fr;
+      }
+    }
+    .overlay-images img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeScaleIn 0.5s ease forwards;
+      animation-delay: calc(0.1s * var(--image-index));
+    }
     .gallery-section {
       padding: 60px 0;
       background: #f5f8fd;
       overflow: hidden;
     }
     .gallery-container {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 25px;
       margin-bottom: 30px;
-      max-width: 600px;
+      max-width: 900px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -194,6 +215,11 @@
 
     /* Responsive Adjustments */
     @media (max-width: 768px) {
+      .gallery-container {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding: 0 15px;
+      }
       .gallery-item img {
         height: 200px;
       }
@@ -236,8 +262,8 @@
   <!-- ======= Mobile nav toggle button ======= -->
 <!--- <i class="bi bi-list mobile-nav-toggle d-xl-none"></i> -->
 
-  <!-- ======= Header ======= -->
-  <!-- 
+  <!-- ======= Header ======= 
+  
   <header id="header">
     <div class="d-flex flex-column">
       <div class="profile">
@@ -264,8 +290,8 @@
       </nav>
      
     </div>
-  </header> 
--->
+  </header> -->
+
   <div>
   <section id="gallery" class="gallery-section">
     <div class="container">
@@ -274,14 +300,6 @@
         <p>Highly motivated and creative Graphics and Web Developer with 4+ years of experience in developing and designing websites, graphics, and multimedia projects. Experienced in creating user interfaces, developing back-end applications, and optimizing websites for search engine optimization.</p>
       </div>
       <div class="gallery-container" data-aos="zoom-in" id="gallery-container">
-
-      
-<!----
-      </div>
-      <div class="download-btn-container" data-aos="fade-up">
-        <a href="https://drive.google.com/file/d/1FfPOhsdqxVuj2ThykuBx5NddQmaXKDmq/view?usp=drivesdk" class="download-btn">Download All</a>
-      </div>
-    </div> -->
   
       </section>
 
@@ -290,8 +308,7 @@
     <div class="overlay-content" id="overlay-content">
       <span class="close-btn" id="close-overlay">❌</span>
       <h2 class="project-title" id="overlay-title"></h2>
-      <div id="overlay-images"></div>
-     <!-- <a href="https://drive.google.com/file/d/1FfPOhsdqxVuj2ThykuBx5NddQmaXKDmq/view?usp=drivesdk" class="overlay-download-btn">Download All</a> -->
+      <div id="overlay-images" class="overlay-images"></div>
     </div>
   </div>
       </div>
@@ -418,6 +435,21 @@
         title: "Gocab",
         description: "Full branding for Gocab.",
         images: ["assets/web/branding/b0.jpg", "assets/web/branding/b1.webp", "assets/web/branding/b1.webp", "assets/web/branding/b2.webp", "assets/web/branding/b3.webp", "assets/web/branding/b4.webp", "assets/web/branding/b5.webp", "assets/web/branding/b6.webp", "assets/web/branding/b7.webp", "assets/web/branding/b8.webp", "assets/web/branding/b9.webp", "assets/web/branding/b10.webp", "assets/web/branding/b11.webp", "assets/web/branding/b12.webp", "assets/web/branding/b13.webp", "assets/web/branding/b14.webp", "assets/web/branding/b15.webp", "assets/web/branding/b16.webp", "assets/web/branding/b17.webp", "assets/web/branding/b18.webp", "assets/web/branding/b19.webp", "assets/web/branding/b20.webp", "assets/web/branding/b21.webp", "assets/web/branding/b22.webp", "assets/web/branding/b23.webp", "assets/web/branding/b24.webp"],
+      },
+      {
+        title: "F and B Aruba",
+        description: "Social Media post for F and B Aruba",
+        images: ["assets/web/localfood/s1.webp", "assets/web/localfood/s2.webp", "assets/web/localfood/s3.webp", "assets/web/localfood/s4.webp", "assets/web/localfood/s5.webp", "assets/web/localfood/s6.png", "assets/web/localfood/s7.webp", "assets/web/localfood/s8.webp", "assets/web/localfood/s9.webp", "assets/web/localfood/s10.webp", "assets/web/localfood/s11.webp", "assets/web/localfood/s12.png", "assets/web/localfood/s13.webp", "assets/web/localfood/s14.webp", "assets/web/localfood/s15.webp", "assets/web/localfood/s17.webp", "assets/web/localfood/s18.webp", "assets/web/localfood/sl.webp"],
+      },
+      {
+        title: "DevTroin",
+        description: "Social Media post for DevTroin.",
+        images: ["assets/web/devtroin/s1.webp", "assets/web/devtroin/s2.jpg", "assets/web/devtroin/s3.jpg", "assets/web/devtroin/s4.jpg", "assets/web/devtroin/s5.webp", "assets/web/devtroin/s6.jpg", "assets/web/devtroin/s7.jpg", "assets/web/devtroin/s8.jpg", "assets/web/devtroin/s9.jpg", "assets/web/devtroin/s10.webp", "assets/web/devtroin/s11.webp"],
+      },
+      {
+        title: "Loca10",
+        description: "Social Media post for Loca10.",
+        images: ["assets/web/loca10/s1.webp", "assets/web/loca10/s2.webp", "assets/web/loca10/s3.webp", "assets/web/loca10/s4.webp", "assets/web/loca10/s5.webp", "assets/web/loca10/s6.webp", "assets/web/loca10/s7.webp", "assets/web/loca10/s8.webp", "assets/web/loca10/s9.webp", "assets/web/loca10/s10.webp", "assets/web/loca10/s11.webp"],
       },
     ];
 
